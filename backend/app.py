@@ -3,6 +3,10 @@ from flask_security import Security
 from flask_restful import Api
 from flask_cors import CORS # Cross-Origin Resource Sharing
 
+from controllers.database import db
+from controllers.user_datastore import user_datastore
+from controllers.config import Config
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -62,7 +66,12 @@ def index():
     return {
         'message': 'Welcome to the Flask Security API!'
     }, 200
-
+    
+from controllers.auth_apis import LoginAPI, LogoutAPI, RegisterAPI, CheckEmailAPI
+api.add_resource(LoginAPI, '/login')
+api.add_resource(LogoutAPI, '/logout')
+api.add_resource(RegisterAPI, '/register')
+api.add_resource(CheckEmailAPI, '/check-email')
 
 if __name__ == "__main__":
     app.run(debug=True)

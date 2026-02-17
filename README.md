@@ -8,3 +8,5 @@
 
 # pip install -r requirements.txt
 # pip freeze > requirements.txt
+
+# npm create vue@latest
